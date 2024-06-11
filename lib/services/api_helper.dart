@@ -96,7 +96,6 @@ static Future<bool> SetPasswordRequest(FormValues) async{
 
 
 // // ----- Get task by Status ----- // //
-
 static Future<String> getTaskbyStatus ({required String status}) async {
   String? token = await StoredData.readUserData('token');
   Map<String, String>? requestHeaderWithToken={"Content-Type":"application/json",'token':token!};
@@ -113,6 +112,48 @@ static Future<String> getTaskbyStatus ({required String status}) async {
   }
 
 }
+
+
+// create new Task //
+static Future<bool> createNewTaskRequest(FormValues) async{
+  String? token = await StoredData.readUserData('token');
+  Map<String, String>? requestHeaderWithToken={"Content-Type":"application/json",'token':token!};
+  var URL=Uri.parse("${ApiServices.baseUrl}/createTask");
+  var PostBody=json.encode(FormValues);
+  var response= await  http.post(URL,headers:requestHeaderWithToken,body: PostBody);
+  var ResultCode=response.statusCode;
+  var ResultBody=json.decode(response.body);
+  if(ResultCode==200 && ResultBody['status']=="success"){
+    SuccessToast("Create Request Success");
+    return true;
+  }
+  else{
+    ErrorToast("Request fail ! try again");
+    return false;
+  }
+}
+
+
+
+// // ----- Delete Task Request ----- // //
+static Future<bool> taskDeleteRequest ({id}) async {
+  String? token = await StoredData.readUserData('token');
+  Map<String, String>? requestHeaderWithToken={"Content-Type":"application/json",'token':token!};
+  var URL=Uri.parse("${ApiServices.baseUrl}/deleteTask/$id");
+  var response= await  http.get(URL,headers:requestHeaderWithToken);
+  var ResultCode =response.statusCode;
+   if(ResultCode==200){
+    SuccessToast("Request Success");
+    return true;
+  }
+  else{
+    ErrorToast("Request fail ! try again");
+    return false;
+  }
+
+}
+
+
 
 
 

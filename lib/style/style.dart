@@ -79,7 +79,7 @@ TextStyle Head9Text(textColor){
   );
 }
 
-InputDecoration AppInputDecoration(label){
+InputDecoration AppInputDecoration({label , String? hText}){
   return InputDecoration(
       focusedBorder:  const OutlineInputBorder(
         borderSide: BorderSide(color: colorGreen, width: 1),
@@ -91,7 +91,12 @@ InputDecoration AppInputDecoration(label){
         borderSide: BorderSide(color: colorWhite, width: 0.0),
       ),
       border: const OutlineInputBorder(),
-      labelText: label
+      labelText: label,
+      hintText: hText ?? '',
+      hintStyle: const TextStyle(
+      color: colorDarkBlue
+      )
+      
   );
 }
 

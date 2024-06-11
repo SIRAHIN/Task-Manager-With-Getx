@@ -30,14 +30,14 @@ class LoginScreen extends StatelessWidget {
                   onChanged: (value) {
                     authController.forloginForm('email', value);
                   },
-                  decoration: AppInputDecoration("Email"),
+                  decoration: AppInputDecoration(label: 'Email'),
                 ),
                 const SizedBox(height: 15,),
                 TextFormField(
                 onChanged: (value) {
                   authController.forloginForm('password', value);
                 },
-                  decoration: AppInputDecoration("Password"),
+                  decoration: AppInputDecoration(label: "Password"),
                 ),
                 const SizedBox(height: 15,),
 

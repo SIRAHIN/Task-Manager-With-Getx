@@ -39,14 +39,14 @@ class SetPasswordScreen extends StatelessWidget {
                   onChanged: (value) {
                     authController.forRecoveryPasswordForm('password', value);
                   },
-                  decoration: AppInputDecoration("Password"),
+                  decoration: AppInputDecoration(hText:  "Password"),
                 ),
                 const SizedBox(height: 15,),
                 TextFormField(
                 onChanged: (value) {
                    authController.forRecoveryPasswordForm('cPassword', value);
                 },
-                  decoration: AppInputDecoration("Confirm Password"),
+                  decoration: AppInputDecoration(label:  "Confirm Password"),
                 ),
                 const SizedBox(height: 15,),
                 ElevatedButton(

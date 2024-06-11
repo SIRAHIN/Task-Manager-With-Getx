@@ -41,7 +41,7 @@ class EmailVerificationScreen extends StatelessWidget {
                   onChanged: (value) {
                     authcontroller.forEmailVerificationForm('email', value);
                   },
-                  decoration: AppInputDecoration("Email"),
+                  decoration: AppInputDecoration(label:  "Email"),
                 ),
              
                 const SizedBox(height: 15,),

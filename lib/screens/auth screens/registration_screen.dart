@@ -40,7 +40,7 @@ class RegistrationScreen extends StatelessWidget {
                       onChanged: (value) {
                         authController.forRegistrationForm('email', value);
                       },
-                      decoration: AppInputDecoration("Email"),
+                      decoration: AppInputDecoration(label:  "Email"),
                     ),
                     const SizedBox(
                       height: 15,
@@ -49,7 +49,7 @@ class RegistrationScreen extends StatelessWidget {
                       onChanged: (value) {
                         authController.forRegistrationForm('firstName', value);
                       },
-                      decoration: AppInputDecoration("First Name"),
+                      decoration: AppInputDecoration(label:  "First Name"),
                     ),
                     const SizedBox(
                       height: 15,
@@ -58,7 +58,7 @@ class RegistrationScreen extends StatelessWidget {
                       onChanged: (value) {
                         authController.forRegistrationForm('lastName', value);
                       },
-                      decoration: AppInputDecoration("Last Name"),
+                      decoration: AppInputDecoration(label:  "Last Name"),
                     ),
                     const SizedBox(
                       height: 15,
@@ -67,7 +67,7 @@ class RegistrationScreen extends StatelessWidget {
                       onChanged: (value) {
                         authController.forRegistrationForm('mobile', value);
                       },
-                      decoration: AppInputDecoration("Mobile"),
+                      decoration: AppInputDecoration(hText:  "Mobile"),
                     ),
                     const SizedBox(
                       height: 15,
@@ -76,7 +76,7 @@ class RegistrationScreen extends StatelessWidget {
                       onChanged: (value) {
                         authController.forRegistrationForm('password', value);
                       },
-                      decoration: AppInputDecoration("Password"),
+                      decoration: AppInputDecoration(label:  "Password"),
                     ),
                     const SizedBox(
                       height: 15,
@@ -94,7 +94,7 @@ class RegistrationScreen extends StatelessWidget {
                       // onChanged: (value) {
                        
                       // },
-                      decoration: AppInputDecoration("Confirm Password"),
+                      decoration: AppInputDecoration(label:  "Confirm Password"),
                     ),
                     const SizedBox(
                       height: 15,
