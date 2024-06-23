@@ -6,8 +6,8 @@ import 'package:task_manager/style/style.dart';
 
 import '../screens/tasks screen/model/task_model.dart';
 
-class CustomBottomSheet extends StatelessWidget {
-  CustomBottomSheet(
+class AddtaskBottomSheet extends StatelessWidget {
+  AddtaskBottomSheet(
       {super.key,
       required this.taskController,
       required this.sheetTitle,
@@ -42,7 +42,7 @@ class CustomBottomSheet extends StatelessWidget {
                   height: 15,
                 ),
                 TextFormField(
-                  initialValue: taskDataofUpdate?.title ?? '',
+              
                   onChanged: (value) {
                     taskController.setFormValue('title', value);
                   },
@@ -52,7 +52,7 @@ class CustomBottomSheet extends StatelessWidget {
                   height: 15,
                 ),
                 TextFormField(
-                  initialValue: taskDataofUpdate?.description ?? '',
+                  
                   maxLines: 5,
                   onChanged: (value) {
                     taskController.setFormValue('description', value);

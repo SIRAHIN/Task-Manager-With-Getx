@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task_manager/widgets/custom_bottom_sheet.dart';
+import 'package:task_manager/widgets/custom_status_bottom_sheet.dart';
 import 'package:task_manager/widgets/delete_task_widget.dart';
 
 import '../../../style/style.dart';
@@ -81,7 +81,7 @@ class ProgressTaskList extends StatelessWidget {
                                 isScrollControlled: true,
                                 context: context,
                                 builder: (context) {
-                                  return CustomBottomSheet(
+                                  return CustomStatusBottomSheet(
                                     taskController: taskController,
                                     sheetTitle: 'Update Task',
                                     taskDataofUpdate: listData,

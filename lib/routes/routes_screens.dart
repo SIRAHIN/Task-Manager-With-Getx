@@ -30,7 +30,7 @@ List<GetPage<dynamic>>? routes = [
       page: () => const CancelTaskList()),
   GetPage(
   name: RoutesName.newTaskListScreen, 
-  page: () =>   NewTaskList()),
+  page: () =>   const NewTaskList()),
   GetPage(
       name: RoutesName.progressTaskListScreen,
       page: () => const ProgressTaskList()),

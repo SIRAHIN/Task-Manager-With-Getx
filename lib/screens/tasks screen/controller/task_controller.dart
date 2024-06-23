@@ -16,6 +16,12 @@ class TaskController extends GetxController {
 var isLoading = false.obs;
 TaskModel? taskModelData;
 
+
+// radioBtn state value //
+
+var statusValue = 'New'.obs;
+
+
 //inital call for body and app bar data//
 @override
   void onInit() async {
@@ -50,15 +56,19 @@ TaskModel? taskModelData;
     switch (bottomNavIndex.value) {
       case 0:
       await fetchTaskbyStatus('New');
+      statusValue.value = 'New';
       break;
       case 1:
       await fetchTaskbyStatus('Progress');
+      statusValue.value = 'Progress';
       break;
       case 2:
       await fetchTaskbyStatus("Completed");
+      statusValue.value = 'Completed';
       break;
       case 3:
       await fetchTaskbyStatus("Canceled");
+      statusValue.value = 'Canceled';
       break;
       default:
       break;
@@ -68,7 +78,7 @@ TaskModel? taskModelData;
 
   // list of fragments //
   List widgetClassList =  [
-    NewTaskList(),
+    const NewTaskList(),
     const ProgressTaskList(),
     const CompletedTaskList(),
     const CancelTaskList()
@@ -119,7 +129,17 @@ TaskModel? taskModelData;
     bool isDeleted = await ApiHelper.taskDeleteRequest(id: taskId);
     if(isDeleted){
       Get.back();
-      print(bottomNavIndex.value);
+      await changeBtmNavIndex(bottomNavIndex.value);
+    } else {
+      Get.offAllNamed(RoutesName.homeScreen);
+    }
+  }
+
+   // delete requet here //
+  requestForUpdateStatusTask (taskId, status) async {
+    bool isUpdated = await ApiHelper.taskUpdateRequest(taskId, status);
+    if(isUpdated){
+      Get.back();
       await changeBtmNavIndex(bottomNavIndex.value);
     } else {
       Get.offAllNamed(RoutesName.homeScreen);

@@ -31,7 +31,7 @@ class DeleteTaskWidget extends StatelessWidget {
               Colors.amberAccent,
               barrierDismissible: false,
               textCancel: 'No',
-              middleTextStyle:TextStyle(
+              middleTextStyle:const TextStyle(
               fontSize: 15,
               )
               );

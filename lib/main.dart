@@ -5,26 +5,22 @@ import 'package:task_manager/routes/routes_name.dart';
 import 'package:task_manager/routes/routes_screens.dart';
 import 'package:task_manager/utils/utility.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  String? token = await StoredData.readUserData("token");
-  print("your token is  $token");
-   runApp(MyApp(
-    routeName: token == null ? RoutesName.loginScreen : RoutesName.homeScreen,
+void main()  {
+   runApp(const MyApp(
   ));
  
 } 
 
 class MyApp extends StatelessWidget {
-  final String? routeName;
-  const MyApp({super.key, this.routeName });
+  
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Material App',
       getPages: routes,
-      initialRoute: routeName,
+      initialRoute: RoutesName.splashScreen,
       initialBinding: ControllerBindings(),
     );
   }

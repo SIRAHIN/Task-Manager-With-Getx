@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task_manager/routes/routes_name.dart';
-import 'package:task_manager/screens/tasks%20screen/model/task_model.dart';
 import 'package:task_manager/style/style.dart';
-import 'package:task_manager/widgets/custom_bottom_sheet.dart';
+import 'package:task_manager/widgets/add_Task_bottom_sheet.dart';
+import 'package:task_manager/widgets/custom_status_bottom_sheet.dart';
 import 'package:task_manager/widgets/delete_task_widget.dart';
 import 'package:task_manager/widgets/topCard_view.dart';
 
 import '../controller/task_controller.dart';
 
 class NewTaskList extends StatelessWidget {
-  NewTaskList({super.key});
+  const NewTaskList({super.key});
 
   //final controllerTxt = Get.find<TaskController>();
 
@@ -103,7 +102,7 @@ class NewTaskList extends StatelessWidget {
                                           isScrollControlled: true,
                                           context: context,
                                           builder: (context) {
-                                            return CustomBottomSheet(
+                                            return CustomStatusBottomSheet(
                                               taskController: taskController,
                                               sheetTitle: 'Update Task',
                                               taskDataofUpdate: listData,
@@ -112,7 +111,9 @@ class NewTaskList extends StatelessWidget {
                                         );
                                       },
                                       icon: const Icon(Icons.recycling)),
-                                       DeleteTaskWidget(taskController: taskController, listData: listData)
+                                  DeleteTaskWidget(
+                                      taskController: taskController,
+                                      listData: listData)
                                 ],
                               ),
                             );
@@ -134,10 +135,7 @@ class NewTaskList extends StatelessWidget {
                 isScrollControlled: true,
                 context: context,
                 builder: (context) {
-                  return CustomBottomSheet(
-                    taskController: taskController,
-                    sheetTitle: 'Add New Task',
-                  );
+                  return AddtaskBottomSheet(taskController: taskController, sheetTitle: 'Add New Task');
                 },
               );
             },

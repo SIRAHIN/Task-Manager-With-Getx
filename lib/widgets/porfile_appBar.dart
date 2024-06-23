@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager/routes/routes_name.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/utility.dart';
 
@@ -54,6 +55,7 @@ class ProfileAppBar extends StatelessWidget {
         IconButton(
             onPressed: () async {
              await StoredData.RemoveToken();
+             Get.offAllNamed(RoutesName.loginScreen);
             },
             icon: const Icon(Icons.output)
         )

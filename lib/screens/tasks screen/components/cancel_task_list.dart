@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/style/style.dart';
+import 'package:task_manager/widgets/custom_status_bottom_sheet.dart';
+import 'package:task_manager/widgets/delete_task_widget.dart';
 
 import '../controller/task_controller.dart';
 
@@ -72,12 +74,23 @@ class CancelTaskList extends StatelessWidget {
                         children: [
                           IconButton(
                               color: colorGreen,
-                              onPressed: () {},
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  isDismissible: true,
+                                  isScrollControlled: true,
+                                  context: context,
+                                  builder: (context) {
+                                    return CustomStatusBottomSheet(
+                                      taskController: controller,
+                                      sheetTitle: 'Update Task',
+                                      taskDataofUpdate: listData,
+                                    );
+                                  },
+                                );
+                              },
                               icon: const Icon(Icons.recycling)),
-                          IconButton(
-                              color: colorRed,
-                              onPressed: () {},
-                              icon: const Icon(Icons.delete))
+                          DeleteTaskWidget(
+                              taskController: controller, listData: listData)
                         ],
                       ),
                     );
