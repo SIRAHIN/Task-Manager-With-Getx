@@ -10,4 +10,6 @@ class RoutesName {
   static const String progressTaskListScreen = '/progressTaskListScreen';
   static const String cancelTaskListScreen = '/cancelTaskListScreen';
   static const String completedTaskListScreen = '/completedTaskListScreen';
+  static const String updateProfileScreen = '/updateProfileScreen';
+
 }

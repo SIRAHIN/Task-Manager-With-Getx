@@ -6,6 +6,7 @@ import 'package:task_manager/screens/tasks%20screen/components/completed_task_li
 import 'package:task_manager/screens/tasks%20screen/components/new_task_list.dart';
 import 'package:task_manager/screens/tasks%20screen/components/progress_task_list.dart';
 import 'package:task_manager/screens/tasks%20screen/model/task_model.dart';
+import 'package:task_manager/screens/tasks%20screen/model/task_status_count_model.dart';
 import 'package:task_manager/services/api_helper.dart';
 import 'package:task_manager/utils/utility.dart';
 
@@ -16,24 +17,25 @@ class TaskController extends GetxController {
 var isLoading = false.obs;
 TaskModel? taskModelData;
 
+List<DataList> dataList = [];
+
 
 // radioBtn state value //
-
 var statusValue = 'New'.obs;
 
 
 //inital call for body and app bar data//
 @override
   void onInit() async {
-    await changeBtmNavIndex(bottomNavIndex.value);
-    await ReadAppBarData();
+  await ReadAppBarData();
+ // await requestTaskStatusCount();
+  await changeBtmNavIndex(bottomNavIndex.value);  
     super.onInit();
   }
 
 
   // -- User Data Information Handling -- //
   Map<String,String> ProfileData={"email":"","firstName":"","lastName":"","photo": StoredData.DefaultProfilePic}.obs;
-  
   Future ReadAppBarData() async {
   String? email= await StoredData.readUserData('email');
   String? firstName= await StoredData.readUserData('firstName');
@@ -42,10 +44,9 @@ var statusValue = 'New'.obs;
    ProfileData.update('firstName', (value) => firstName!);
    ProfileData.update('lastName', (value) => lastName!);
    ProfileData.update('email', (value) => email!);
-  //ProfileData.update('photo', (value) => photo ?? StoredData.DefaultProfilePic);
+  // ProfileData.update('photo', (value) => photo ?? StoredData.DefaultProfilePic);
   update();
   }
-
 
 
 
@@ -55,6 +56,7 @@ var statusValue = 'New'.obs;
     bottomNavIndex.value = index;
     switch (bottomNavIndex.value) {
       case 0:
+      await requestTaskStatusCount();
       await fetchTaskbyStatus('New');
       statusValue.value = 'New';
       break;
@@ -124,7 +126,7 @@ var statusValue = 'New'.obs;
   }
 
 
-  // delete requet here //
+  // Delete requet  //
   requestForDeleteTask (taskId) async {
     bool isDeleted = await ApiHelper.taskDeleteRequest(id: taskId);
     if(isDeleted){
@@ -135,7 +137,7 @@ var statusValue = 'New'.obs;
     }
   }
 
-   // delete requet here //
+   // Update status request  //
   requestForUpdateStatusTask (taskId, status) async {
     bool isUpdated = await ApiHelper.taskUpdateRequest(taskId, status);
     if(isUpdated){
@@ -144,6 +146,19 @@ var statusValue = 'New'.obs;
     } else {
       Get.offAllNamed(RoutesName.homeScreen);
     }
+  }
+
+
+  //
+ Future<List<DataList>> requestTaskStatusCount() async{
+  dataList.clear();
+  isLoading.value = true;
+   List responseData = await ApiHelper.taskStatusCount();
+  isLoading.value = false;
+   for(var item in responseData){
+    dataList.add(DataList.fromJson(item));
+   }
+   return dataList;
   }
 
 

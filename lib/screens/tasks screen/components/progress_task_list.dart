@@ -18,9 +18,9 @@ class ProgressTaskList extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: GetBuilder<TaskController>(
           builder: (controller) {
-            if (controller.isLoading.value == true) {
+            if (controller.isLoading.value == true || controller.taskModelData?.data == null) {
               return const Center(child: CircularProgressIndicator());
-            } else if (controller.taskModelData!.data!.isEmpty) {
+            } else if (controller.taskModelData!.data!.isEmpty ) {
               return Center(
                 child: Container(
                   alignment: Alignment.center,

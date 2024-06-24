@@ -173,6 +173,45 @@ static Future<bool> taskUpdateRequest(id,status) async {
 }
 
 
+//
+static Future taskStatusCount() async {
+  var url = Uri.parse('${ApiServices.baseUrl}/taskStatusCount');
+  String? token= await StoredData.readUserData("token");
+  var RequestHeaderWithToken={"Content-Type":"application/json","token":'$token'};
+  var response= await http.get(url,headers:RequestHeaderWithToken);
+  var ResultCode=response.statusCode;
+  var ResultBody=json.decode(response.body);
+  if(ResultCode==200 && ResultBody['status']=="success"){
+   // SuccessToast("Request Success");
+    return ResultBody['data'];
+  }
+  else{
+    ErrorToast("Request fail ! try again");
+    return null;
+  }
+}
+
+
+static Future updateProfileRequest(postedData) async {
+  String? token = await StoredData.readUserData('token');
+  Map<String, String>? requestHeaderWithToken={"Content-Type":"application/json",'token':token!};
+  var URL=Uri.parse("${ApiServices.baseUrl}/profileUpdate");
+  var PostBody=json.encode(postedData);
+  var response= await http.post(URL,headers:requestHeaderWithToken, body: PostBody);
+  var ResultCode=response.statusCode;
+  var ResultBody=json.decode(response.body);
+  if(ResultCode==200 && ResultBody['status']=="success"){
+    await StoredData.writeUserporfileUpdateData(postedData);
+    SuccessToast("Request Success");
+    return true;
+  }
+  else{
+    ErrorToast("Request fail ! try again");
+    return false;
+  }
+}
+
+
 
 
 

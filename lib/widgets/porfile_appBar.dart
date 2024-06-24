@@ -32,11 +32,14 @@ class ProfileAppBar extends StatelessWidget {
         margin: const EdgeInsets.fromLTRB(10, 40, 10, 0),
         child: Row(
           children: [
-            CircleAvatar(
-              backgroundColor: Colors.transparent,
-              radius: 24,
-              child: ClipOval(
-                child: Image.memory(StoredData.ShowBase64Image(viewProfileData!['photo'])),
+            InkWell(
+              onTap: () => Get.toNamed(RoutesName.updateProfileScreen),
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                radius: 24,
+                child: ClipOval(
+                  child: Image.memory(StoredData.ShowBase64Image(viewProfileData!['photo'])),
+                ),
               ),
             ),
             const SizedBox(width: 10),

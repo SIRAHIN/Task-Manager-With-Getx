@@ -17,6 +17,17 @@ static Future<void> writeUserData (UserModelData userdata) async{
   await prefs.setString('photo', userdata.data!.photo!);
 }
 
+static Future<void> writeUserporfileUpdateData (updatedData) async{
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('email', updatedData['email']);
+  await prefs.setString('firstName',updatedData['firstName'] );
+  await prefs.setString('lastName',updatedData['lastName']);
+  await prefs.setString('mobile', updatedData['mobile']);
+  await prefs.setString('photo', updatedData['photo']);
+}
+
+
+
 static Future<void> writeEmailVerification ({required email}) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString('EmailVerification', email);

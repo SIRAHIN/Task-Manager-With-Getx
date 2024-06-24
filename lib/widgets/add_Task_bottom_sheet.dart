@@ -42,7 +42,6 @@ class AddtaskBottomSheet extends StatelessWidget {
                   height: 15,
                 ),
                 TextFormField(
-              
                   onChanged: (value) {
                     taskController.setFormValue('title', value);
                   },
@@ -52,7 +51,6 @@ class AddtaskBottomSheet extends StatelessWidget {
                   height: 15,
                 ),
                 TextFormField(
-                  
                   maxLines: 5,
                   onChanged: (value) {
                     taskController.setFormValue('description', value);

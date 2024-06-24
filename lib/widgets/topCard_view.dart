@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 import '../style/style.dart';
 
 class TopCardView extends StatelessWidget {
-  const TopCardView({
+
+  String? taskStatusName;
+  int? taskCountbyStatus;
+
+   TopCardView({
     super.key,
+    required this.taskCountbyStatus,
+    required this.taskStatusName
   });
 
   @override
@@ -19,10 +25,10 @@ class TopCardView extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: colorGreen,
         ),
-        child: const Column(
+        child:  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text('09'), Text('New Task')],
+          children: [Text('$taskStatusName'), Text('$taskCountbyStatus'.toString())],
         ),
       ),
     );
